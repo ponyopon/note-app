@@ -1,23 +1,38 @@
-import logo from './logo.svg';
+
+import { useState } from 'react';
 import './App.css';
+import { Main } from './components/Main';
+import Sidebar from './components/Sidebar';
+import uuid from 'react-uuid';
 
 function App() {
+  const [notes, setNotes ] = useState([]) ;
+  const [activeNote, setActiveNote] = useState(false)
+  const onAddNote = () => {
+    const newNote = {
+      id:uuid(),
+      title : 'new note',
+      content : 'new content',
+      modDate : Date.now()
+
+    }
+    setNotes([...notes, newNote])
+  }
+  const onDeletenote = (id) =>{
+    const filterNotes = notes.filter((note) => note.id !== id);
+    setNotes(filterNotes)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Sidebar 
+      onAddNote={onAddNote} 
+      notes={notes} 
+      onDeletenote={onDeletenote}
+      activeNote={activeNote}
+      setActiveNote={setActiveNote}
+       />
+      <Main />
     </div>
   );
 }
