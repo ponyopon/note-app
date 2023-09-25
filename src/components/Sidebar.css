@@ -40,7 +40,7 @@
     justify-content: space-between;
 }
 
-.app-sidebar-notes p {
+.app-sidebar-note p {
     margin: 10px 0;
 }
 
@@ -48,6 +48,10 @@
     color: #999;
 
 }
-.app-sidebar-notes:hover {
+.app-sidebar-note:hover {
+    background-color: white;
+}
+
+.app-sidebar-note.active {
     color: white;
 }
